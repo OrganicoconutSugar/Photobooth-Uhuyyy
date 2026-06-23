@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { loadSessions } from '../lib/galleryStore';
+import { apiUrl } from '../lib/api';
 import Lightbox from '../components/Lightbox';
 
 function regenerateStrip(images) {
@@ -78,7 +79,7 @@ export default function Gallery() {
     }
     (async () => {
       try {
-        const res = await fetch('/api/sessions', {
+        const res = await fetch(apiUrl('/api/sessions'), {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -106,7 +107,7 @@ export default function Gallery() {
 
   const handleDelete = async (id) => {
     if (!token) return;
-    await fetch(`/api/sessions/${id}`, {
+    await fetch(apiUrl(`/api/sessions/${id}`), {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });

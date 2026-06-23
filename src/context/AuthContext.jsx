@@ -1,11 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { apiUrl } from '../lib/api';
 
 const AuthContext = createContext(null);
 
-const API = '/api/auth';
-
 function api(path, options = {}) {
-  return fetch(`${API}${path}`, {
+  return fetch(apiUrl(`/api/auth${path}`), {
     ...options,
     headers: { 'Content-Type': 'application/json', ...options.headers },
   }).then(async (r) => {

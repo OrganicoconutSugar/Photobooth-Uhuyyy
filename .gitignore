@@ -1,3 +1,8 @@
+# Database
+server/database.db
+server/database.db-shm
+server/database.db-wal
+
 # Logs
 logs
 *.log

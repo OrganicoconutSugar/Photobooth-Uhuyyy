@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../lib/api';
 
 function api(path, token, options = {}) {
-  return fetch(path, {
+  return fetch(apiUrl(path), {
     ...options,
     headers: { ...options.headers, Authorization: `Bearer ${token}` },
   }).then(async (r) => {

@@ -3,6 +3,7 @@ import { Navigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { saveSession } from '../lib/galleryStore';
 import { getFrameStyle } from '../lib/frameStyles';
+import { apiUrl } from '../lib/api';
 import smileLogo from '../assets/icons/LogoSenyum.svg';
 import manualLogo from '../assets/icons/LogoManual.svg';
 import loadingKamera from '../assets/Kamera/LoadingKamera.jpg';
@@ -430,7 +431,7 @@ export default function Kamera() {
 
     setSaving(true);
     try {
-      const res = await fetch('/api/sessions', {
+      const res = await fetch(apiUrl('/api/sessions'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
