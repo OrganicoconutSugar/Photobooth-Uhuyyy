@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F8F9F6;
+  color: #2D3A2D;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #9CAF88;
+  color: white;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F0F2EC; }
+::-webkit-scrollbar-thumb { background: #C5D0B8; border-radius: 9999px; }
+
+@layer utilities {
+  .glass-sage {
+    background: rgba(197, 208, 184, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 208, 184, 0.3);
+  }
+
+  .glass-sage-solid {
+    background: rgba(248, 249, 246, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(197, 208, 184, 0.4);
+  }
+
+  .ornament-border {
+    border: 2px solid #C5D0B8;
+    position: relative;
+  }
+
+  .ornament-border::before,
+  .ornament-border::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: #9CAF88;
+    border-style: solid;
+  }
+
+  .ornament-border::before {
+    top: -2px;
+    left: -2px;
+    border-width: 2px 0 0 2px;
+  }
+
+  .ornament-border::after {
+    top: -2px;
+    right: -2px;
+    border-width: 2px 2px 0 0;
+  }
+
+  .ornament-border-bl {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    width: 16px;
+    height: 16px;
+    border-width: 0 0 2px 2px;
+    border-color: #9CAF88;
+    border-style: solid;
+    pointer-events: none;
+  }
+
+  .ornament-border-br {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 16px;
+    height: 16px;
+    border-width: 0 2px 2px 0;
+    border-color: #9CAF88;
+    border-style: solid;
+    pointer-events: none;
+  }
+
+  .sage-gradient {
+    background: linear-gradient(135deg, #F8F9F6 0%, #F0F2EC 50%, #E2E8DC 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* ═══════════════════════════════════════
+     MAXIMALIST SAGE — Ornamental Extras
+     ═══════════════════════════════════════ */
+
+  /* Decorative section divider */
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C5D0B8 20%, #C5D0B8 80%, transparent);
+  }
+
+  /* Sage-tinted rich shadows */
+  .shadow-sage-md {
+    box-shadow:
+      0 4px 16px rgba(154, 175, 136, 0.10),
+      0 1px 4px rgba(154, 175, 136, 0.06);
+  }
+  .shadow-sage-lg {
+    box-shadow:
+      0 8px 32px rgba(154, 175, 136, 0.13),
+      0 2px 8px rgba(154, 175, 136, 0.07);
+  }
+  .shadow-sage-xl {
+    box-shadow:
+      0 16px 48px rgba(154, 175, 136, 0.15),
+      0 4px 16px rgba(154, 175, 136, 0.08);
+  }
+
+  /* Double-border frame */
+  .frame-sage {
+    border: 2px solid #C5D0B8;
+    outline: 1px solid #DDE2D8;
+    outline-offset: 3px;
+    position: relative;
+  }
+
+  /* Large ornamental corners (24px) — for cards & sections */
+  .ornament-lg::before,
+  .ornament-lg::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: #9CAF88;
+    border-style: solid;
+    pointer-events: none;
+  }
+  .ornament-lg::before {
+    top: -2px;
+    left: -2px;
+    border-width: 2px 0 0 2px;
+  }
+  .ornament-lg::after {
+    top: -2px;
+    right: -2px;
+    border-width: 2px 2px 0 0;
+  }
+  .ornament-lg-bl {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    width: 24px;
+    height: 24px;
+    border-width: 0 0 2px 2px;
+    border-color: #9CAF88;
+    border-style: solid;
+    pointer-events: none;
+  }
+  .ornament-lg-br {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 24px;
+    height: 24px;
+    border-width: 0 2px 2px 0;
+    border-color: #9CAF88;
+    border-style: solid;
+    pointer-events: none;
+  }
+
+  /* Decorative overline for headings */
+  .ornament-heading {
+    position: relative;
+    display: inline-block;
+  }
+  .ornament-heading::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9CAF88, transparent);
+  }
+
+  /* Subtle sage dot pattern background */
+  .bg-sage-dots {
+    background-image: radial-gradient(rgba(197, 208, 184, 0.25) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Decorative botanical corner accent — SVG inline helper via bg */
+  .corner-leaf-tl {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .corner-leaf-br {
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* Glass card with ornamental border */
+  .glass-ornament {
+    background: rgba(248, 249, 246, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(197, 208, 184, 0.3);
+    position: relative;
+  }
+  .glass-ornament::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid rgba(154, 175, 136, 0.15);
+    pointer-events: none;
+  }
+
+  /* Decorative footer ornament */
+  .footer-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .footer-ornament::before,
+  .footer-ornament::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C5D0B8, transparent);
+  }
+}
