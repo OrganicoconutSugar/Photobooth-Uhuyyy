@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = 'https://photoboothbackend-production.up.railway.app';
 
 export function apiUrl(path) {
   if (!path.startsWith('/')) path = '/' + path;
