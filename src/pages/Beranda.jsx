@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PHOTO_GLOB = import.meta.glob('../assets/strip/*.{svg,jpg,jpeg,png,webp}', { eager: true });
 const STRIP_PHOTOS = Object.values(PHOTO_GLOB).map((m) => m.default);
+
+const RIGHT_GLOB = import.meta.glob('../assets/strip/About?.jpeg', { eager: true });
+const RIGHT_FILES = Object.values(RIGHT_GLOB).map((m) => m.default).sort();
+const STRIP_RIGHT_PHOTOS = RIGHT_FILES.slice(0, 4);
 
 function DecorativeLeaf({ className }) {
   return (
@@ -12,11 +17,17 @@ function DecorativeLeaf({ className }) {
   );
 }
 
-function HeroStrip() {
+function HeroStrip({ rotate = '-6', photos = STRIP_PHOTOS }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <div className="bg-white p-2 pb-6 rounded-xl shadow-lg shadow-sage-500/10 border border-sage-200 rotate-[-6deg] hover:rotate-0 hover:scale-105 transition-all duration-500 w-40">
+    <div
+      className="bg-white p-2 pb-6 rounded-xl shadow-lg shadow-sage-500/10 border border-sage-200 transition-all duration-500 w-40"
+      style={{ transform: hovered ? 'rotate(0deg) scale(1.05)' : `rotate(${rotate}deg)` }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="space-y-1.5">
-        {STRIP_PHOTOS.slice(0, 4).map((url, i) => (
+        {photos.slice(0, 4).map((url, i) => (
           <div
             key={i}
             className="w-full aspect-[4/3] rounded-lg bg-cover bg-center"
@@ -38,19 +49,19 @@ export default function Beranda() {
       <div className="hidden lg:block absolute -top-16 -left-16 w-48 h-48 rounded-full bg-sage-200/20 blur-3xl pointer-events-none" />
       <div className="hidden lg:block absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-sage-300/15 blur-3xl pointer-events-none" />
 
-      <div className="hidden lg:flex lg:col-span-4 justify-end relative">
+      <div className="hidden lg:flex lg:col-span-3 justify-start -ml-8 relative">
         <div className="relative">
           <DecorativeLeaf className="absolute -top-8 -left-8 w-12 h-12 text-sage-300 animate-float" />
           <div className="ornament-lg relative inline-block p-1 rounded-xl">
             <span className="ornament-lg-bl" />
             <span className="ornament-lg-br" />
-            <HeroStrip />
+            <HeroStrip rotate="-6" />
           </div>
           <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-sage-200/40 blur-xl" />
         </div>
       </div>
 
-      <div className="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+      <div className="lg:col-span-6 flex flex-col items-center text-center space-y-8">
         <div className="glass-sage rounded-full px-6 py-2 border border-sage-200/40 animate-fade-in">
           <span className="text-[10px] uppercase tracking-widest text-sage-600 font-semibold">
             &mdash; Teams Uhuyyy Coperate &mdash;
@@ -93,6 +104,18 @@ export default function Beranda() {
           <span>6 Template Frame</span>
           <span>&#8226;</span>
           <span>Cetak Gratis</span>
+        </div>
+      </div>
+
+      <div className="hidden lg:flex lg:col-span-3 justify-end -mr-8 relative">
+        <div className="relative">
+          <DecorativeLeaf className="absolute -bottom-8 -right-8 w-12 h-12 text-sage-300 animate-float rotate-180" />
+          <div className="ornament-lg relative inline-block p-1 rounded-xl">
+            <span className="ornament-lg-bl" />
+            <span className="ornament-lg-br" />
+            <HeroStrip rotate="6" photos={STRIP_RIGHT_PHOTOS} />
+          </div>
+          <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-sage-200/40 blur-xl" />
         </div>
       </div>
     </section>
